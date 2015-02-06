@@ -19,14 +19,16 @@ public class Flight {
     private LocalTime departureTime;    // LocalTime finns bara i java 8, ska man köra det eller ngt annat?
     private LocalTime estimatedArrival;
     private int price;
+    private int numberOfTickets;    // för att se antal tickets bara o getta denna, för o boka så får antagligen en boknings metod i WSen använda set funktionen för att minska med en
     
-    public Flight(String destinationCity,String departureCity,long flightLenght,LocalTime departureTime,int price){
+    public Flight(String departureCity,String destinationCity,long flightLenght,LocalTime departureTime,int price,int numberOfTickets){
         this.destinationCity = destinationCity;
         this.departureCity = departureCity;
         this.flightLenght = flightLenght;
         this.departureTime = departureTime.truncatedTo(ChronoUnit.MINUTES);       // gör så vi bara får med HH:MM
         this.price = price;
         this.estimatedArrival = departureTime.plus(flightLenght,ChronoUnit.MINUTES);    // adderar flightlenght antal minuter till tiden
+        this.numberOfTickets = numberOfTickets;
     }
 
     /**
@@ -69,6 +71,20 @@ public class Flight {
      */
     public int getPrice() {
         return price;
+    }
+
+    /**
+     * @return the numberOfTickets
+     */
+    public int getNumberOfTickets() {
+        return numberOfTickets;
+    }
+
+    /**
+     * @param numberOfTickets the numberOfTickets to set
+     */
+    public void setNumberOfTickets(int numberOfTickets) {
+        this.numberOfTickets = numberOfTickets;
     }
     
     
