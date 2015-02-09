@@ -4,6 +4,8 @@ package dto;
 
 
 
+
+
 public class FlightPathDTO {
 
 	private String destination;
@@ -22,18 +24,13 @@ public class FlightPathDTO {
 		return departure;
 	}
 
-    /**
-     * @param destination the destination to set
-     */
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
 
-    /**
-     * @param departure the departure to set
-     */
-    public void setDeparture(String departure) {
-        this.departure = departure;
-    }
+	public void setDestination(String destination){
+		this.destination = destination;
+	}
+
 	
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
 }
