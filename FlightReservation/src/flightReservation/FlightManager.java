@@ -51,11 +51,11 @@ public class FlightManager {
 	public List<FlightPathDTO> getPossibleRouting(String departureCity, String arrivalCity){
 		List <Flight> currentFlightList = new ArrayList<Flight>();
 		getPossibleRoutingLocal(departureCity, arrivalCity, currentFlightList);
-		List<FlightPathDTO> returnFlightList = new ArrayList<FlightPathDTO>();
+		List <FlightPathDTO> returnList = new ArrayList<>();
 		for(Flight f : currentFlightList) {
-			returnFlightList.add(new FlightPathDTO(f.getDestinationCity(), f.getDepartureCity()));
+			returnList.add(new FlightPathDTO(f.getDestinationCity(), f.getDepartureCity()));
 		}
-		return returnFlightList;
+		return returnList;
 	}
 	
 	/**
