@@ -5,6 +5,7 @@
  */
 package flightReservation;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
@@ -19,11 +20,11 @@ public class Flight {
     //private LocalTime departureTime;    // LocalTime finns bara i java 8, ska man köra det eller ngt annat?
     //private LocalTime estimatedArrival;
     
-    private LocalTime departureTime;
+    private LocalDate departureTime;
     private int price;
     private int numberOfTickets;    // för att se antal tickets bara o getta denna, för o boka så får antagligen en boknings metod i WSen använda set funktionen för att minska med en
     
-    public Flight(String departureCity, String destinationCity, LocalTime departureTime, int price, int numberOfTickets){
+    public Flight(String departureCity, String destinationCity, LocalDate departureTime, int price, int numberOfTickets){
         this.destinationCity = destinationCity;
         this.departureCity = departureCity;
         //this.flightLenght = flightLenght;
@@ -57,7 +58,7 @@ public class Flight {
     /**
      * @return the departureTime
      */
-    public LocalTime getDepartureTime() {
+    public LocalDate getDepartureTime() {
         return departureTime;
     }
 
