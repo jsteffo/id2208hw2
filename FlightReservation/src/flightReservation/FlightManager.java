@@ -92,10 +92,40 @@ public class FlightManager {
             
             return priceList;
         }
-        String bookTicket(String creditCardnbr,String departureCity, String destinationCity){
-            List<FlightPathDTO> flightsToBook =  getPossibleRouting();
+        String bookTicket(String creditCardnbr, String departureCity, String destinationCity) {
+        List<Flight> flightsToBook = new ArrayList<Flight>();
+        getPossibleRoutingLocal(departureCity, destinationCity, flightsToBook);   // hittar rutten som man ska boka
+        boolean isTicketsLeft=true;
+        String returnMessage="";
+        Flight tempFlight;
+        // loopa igenom alla som ska bokas och kolla om ngn av de har slut på biljetter
+        for (int i = 0; i < flightsToBook.size(); i++) {
+            int tempTickets = flightsToBook.get(i).getNumberOfTickets();
             
-            return "grattis du har bokat ";
+            if(tempTickets < 1){
+                isTicketsLeft = false;
+                tempFlight = flightsToBook.get(i);
+                returnMessage = "Vi kunde tyvärr inte boka dina biljetter eftersom att flighten mellan "+tempFlight.getDepartureCity()+" och "+tempFlight.getDestinationCity()+ "har slut på biljetter";
+            }
         }
+            if (isTicketsLeft) {
+                // här loopar vi igenom igen och faktiskt bokar alla
+                for (int j = 0; j < flightsToBook.size(); j++) {
+                    int tempTickets = flightsToBook.get(j).getNumberOfTickets();
+                    flightsToBook.get(j).setNumberOfTickets(tempTickets - 1);
+                }
+                returnMessage = "biljett mellan "+departureCity+" och "+destinationCity+"är bokad";
+            }
+        
+        return returnMessage;
+        }
+        
+
+                    
+            
+            
+            
+           
+        
 
 }
