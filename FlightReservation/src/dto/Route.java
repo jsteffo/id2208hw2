@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package flightReservation;
+package dto;
 
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
+
+import flightReservation.Flight;
 
 /**
  *

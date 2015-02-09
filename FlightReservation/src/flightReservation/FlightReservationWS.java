@@ -6,20 +6,24 @@
 package flightReservation;
 
 import java.util.ArrayList;
+
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.ejb.Stateless;
+
 import java.time.LocalTime;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+
+import dto.Route;
+import dto.TicketAndPrice;
 
 /**
  *
  * @author norde_000
  */
 @WebService(serviceName = "FlightReservationWS")
-@Stateless()
 public class FlightReservationWS {
 
     ArrayList<Flight> listOfFlights = new ArrayList<>();

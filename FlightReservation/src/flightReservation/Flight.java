@@ -15,19 +15,21 @@ import java.time.temporal.ChronoUnit;
 public class Flight {
     private String destinationCity;
     private String departureCity;
-    private long flightLenght;      // Tid flyget tar i minuter
-    private LocalTime departureTime;    // LocalTime finns bara i java 8, ska man köra det eller ngt annat?
-    private LocalTime estimatedArrival;
+    //private long flightLenght;      // Tid flyget tar i minuter
+    //private LocalTime departureTime;    // LocalTime finns bara i java 8, ska man köra det eller ngt annat?
+    //private LocalTime estimatedArrival;
+    
+    private LocalTime departureTime;
     private int price;
     private int numberOfTickets;    // för att se antal tickets bara o getta denna, för o boka så får antagligen en boknings metod i WSen använda set funktionen för att minska med en
     
-    public Flight(String departureCity,String destinationCity,long flightLenght,LocalTime departureTime,int price,int numberOfTickets){
+    public Flight(String departureCity, String destinationCity, LocalTime departureTime, int price, int numberOfTickets){
         this.destinationCity = destinationCity;
         this.departureCity = departureCity;
-        this.flightLenght = flightLenght;
-        this.departureTime = departureTime.truncatedTo(ChronoUnit.MINUTES);       // gör så vi bara får med HH:MM
+        //this.flightLenght = flightLenght;
+        this.departureTime = departureTime;    // gör så vi bara får med HH:MM
         this.price = price;
-        this.estimatedArrival = departureTime.plus(flightLenght,ChronoUnit.MINUTES);    // adderar flightlenght antal minuter till tiden
+        //this.estimatedArrival = departureTime.plus(flightLenght,ChronoUnit.MINUTES);    // adderar flightlenght antal minuter till tiden
         this.numberOfTickets = numberOfTickets;
     }
 
@@ -48,9 +50,9 @@ public class Flight {
     /**
      * @return the flightLenght
      */
-    public long getFlightLenght() {
-        return flightLenght;
-    }
+//    public long getFlightLenght() {
+//        return flightLenght;
+//    }
 
     /**
      * @return the departureTime
@@ -62,9 +64,9 @@ public class Flight {
     /**
      * @return the estimatedArrival
      */
-    public LocalTime getEstimatedArrival() {
-        return estimatedArrival;
-    }
+//    public LocalTime getEstimatedArrival() {
+//        return estimatedArrival;
+//    }
 
     /**
      * @return the price
