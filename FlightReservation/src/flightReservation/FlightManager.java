@@ -7,6 +7,7 @@ import java.util.List;
 import javax.jws.WebService;
 
 import dto.FlightPathDTO;
+import dto.PriceDTO;
 
 @WebService(targetNamespace="http://id2208hw2BottomUp/")
 public class FlightManager {
@@ -80,5 +81,16 @@ public class FlightManager {
 		}
 		return;
 	}
+        public List<PriceDTO> outputPrice(){
+            List<PriceDTO> priceList = new ArrayList();
+            for(int i=0;i<flightList.size();i++){
+                
+                PriceDTO price = new PriceDTO(flightList.get(i).getDepartureCity(), flightList.get(i).getDestinationCity(),flightList.get(i).getPrice());
+                priceList.add(price);
+            }
+            
+            
+            return priceList;
+        }
 
 }
