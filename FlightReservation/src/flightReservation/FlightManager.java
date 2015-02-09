@@ -2,7 +2,6 @@ package flightReservation;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -10,8 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.jws.WebService;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 import dto.FlightPathDTO;
 import dto.PriceDTO;
@@ -53,10 +50,19 @@ public class FlightManager {
 	//Old not used
 	private void initiateFlights(){
 		//The following four routes makes the route stockholm to göteborg have 2 possible alternatives.
-		flightList.add(new Flight("Stockholm", "Abisko", LocalDate.of(2015, 1, 1),5, 7, 1));
-		flightList.add(new Flight("Abisko", "Göteborg", LocalDate.of(2015, 1, 1) , 5, 6, 2));
 
-		flightList.add(new Flight("Stockholm", "Göteborg", LocalDate.of(2015, 1, 1) , 5, 6, 3));
+//		flightList.add(new Flight("Stockholm", "Abisko", LocalDate.of(2015, 1, 1),5, 7, 1));
+//		flightList.add(new Flight("Abisko", "Göteborg", LocalDate.of(2015, 1, 1) , 5, 6, 2));
+//
+//		flightList.add(new Flight("Stockholm", "Abisko", LocalDate.of(2015, 1, 1),5, 2));
+//
+//
+//
+//		flightList.add(new Flight("Stockholm", "Göteborg", LocalDate.of(2015, 1, 1) , 5, 6, 3));
+//
+//		flightList.add(new Flight("Abisko", "Kiruna", LocalDate.of(2015, 1, 1) , 5, 0));
+//		flightList.add(new Flight("Stockholm", "Malmö", LocalDate.of(2015, 1, 1) , 5, 1));
+
 
 	}
 //Här initierar vi skiten nu
@@ -101,7 +107,7 @@ public class FlightManager {
 	public List<TicketsForRouteDTO> getTicketsForRoute(String departureCity, String destinationCity, String date){
 		return null;
 	}
-	
+
 	//Motherfuck nytt
 	private List<Flight> getPossibleRoutingLocal(String departureCity, String destinationCity, LocalDate date){
 		int [] previousArray = new int [1000];
@@ -183,16 +189,59 @@ public class FlightManager {
 		return null;
 	}
 
-	public List<PriceDTO> outputPrice(){
-		List<PriceDTO> priceList = new ArrayList();
-		for(int i=0;i<flightList.size();i++){
+    public List<PriceDTO> outputPrice(){
+        List<PriceDTO> priceList = new ArrayList();
+        for(int i=0;i<flightList.size();i++){
+            
+            PriceDTO price = new PriceDTO(flightList.get(i).getDepartureCity(), flightList.get(i).getDestinationCity(),flightList.get(i).getPrice());
+            priceList.add(price);
+        }
+        
+        
+        return priceList;
+    }
 
-			PriceDTO price = new PriceDTO(flightList.get(i).getDepartureCity(), flightList.get(i).getDestinationCity(),flightList.get(i).getPrice());
-			priceList.add(price);
-		}
 
+        public String bookTicket(String creditCardnbr, String departureCity, String destinationCity) {
+        List<Flight> flightsToBook = new ArrayList<Flight>();
+        getPossibleRoutingLocal(departureCity, destinationCity, flightsToBook);   // hittar rutten som man ska boka
+        boolean isTicketsLeft=true;
+        String returnMessage="";
+        Flight tempFlight;
+        if(flightsToBook.isEmpty()){
+            returnMessage = "There is no route between "+departureCity+" and "+destinationCity;
+            return returnMessage;
+        }
+        
+        // loopa igenom alla som ska bokas och kolla om ngn av de har slut på biljetter
+        for (int i = 0; i < flightsToBook.size(); i++) {
+            int tempTickets = flightsToBook.get(i).getNumberOfTickets();
+            
+            if(tempTickets < 1){
+                isTicketsLeft = false;
+                tempFlight = flightsToBook.get(i);
+                returnMessage = "Vi kunde tyvärr inte boka dina biljetter eftersom att flighten mellan "+tempFlight.getDepartureCity()+" och "+tempFlight.getDestinationCity()+ " har slut på biljetter";
+            }
+        }
+            if (isTicketsLeft) {
+                // här loopar vi igenom igen och faktiskt bokar alla
+                for (int j = 0; j < flightsToBook.size(); j++) {
+                    int tempTickets = flightsToBook.get(j).getNumberOfTickets();
+                    flightsToBook.get(j).setNumberOfTickets(tempTickets - 1);
+                }
+                returnMessage = "biljett mellan "+departureCity+" och "+destinationCity+" är bokad";
+            }
+        
+        return returnMessage;
+        }
+        
 
-		return priceList;
-	}
+                    
+            
+            
+            
+           
+        
+
 
 }
