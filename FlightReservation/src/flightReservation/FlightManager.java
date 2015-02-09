@@ -96,7 +96,7 @@ public class FlightManager {
 			if(f.getNumberOfTickets() < minAvailableTickets){
 				minAvailableTickets = f.getNumberOfTickets();
 			}
-			price += price;
+			price += f.getPrice();
 		}
 		if(flightList.size() != 0){
 			return new TicketsForRouteDTO(price, minAvailableTickets);	
