@@ -92,5 +92,10 @@ public class FlightManager {
             
             return priceList;
         }
+        String bookTicket(String creditCardnbr,String departureCity, String destinationCity){
+            List<FlightPathDTO> flightsToBook =  getPossibleRouting();
+            
+            return "grattis du har bokat ";
+        }
 
 }

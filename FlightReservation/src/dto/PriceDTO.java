@@ -40,4 +40,25 @@ public class PriceDTO {
     public int getPrice() {
         return price;
     }
+
+    /**
+     * @param departureCity the departureCity to set
+     */
+    public void setDepartureCity(String departureCity) {
+        this.departureCity = departureCity;
+    }
+
+    /**
+     * @param destinationCity the destinationCity to set
+     */
+    public void setDestinationCity(String destinationCity) {
+        this.destinationCity = destinationCity;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

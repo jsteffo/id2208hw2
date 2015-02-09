@@ -21,5 +21,19 @@ public class FlightPathDTO {
 	public String getDeparture() {
 		return departure;
 	}
+
+    /**
+     * @param destination the destination to set
+     */
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    /**
+     * @param departure the departure to set
+     */
+    public void setDeparture(String departure) {
+        this.departure = departure;
+    }
 	
 }
