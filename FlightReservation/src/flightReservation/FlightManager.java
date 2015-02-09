@@ -25,11 +25,11 @@ public class FlightManager {
 		initiateFlights();
 		//Keeps track of the suggested flights involved in route
 		//Initially empty but populated by getPossibleRouting
-		List <Flight> currentFlightList = new ArrayList<Flight>();
-		getPossibleRoutingLocal("Stockholm", "Göteborg", currentFlightList);
-		for(Flight f : currentFlightList) {
-			System.out.println("from: " + f.getDepartureCity() + " to " + f.getDestinationCity());
-		}
+//		List <Flight> currentFlightList = new ArrayList<Flight>();
+//		getPossibleRoutingLocal("Stockholm", "Göteborg", currentFlightList);
+//		for(Flight f : currentFlightList) {
+//			System.out.println("from: " + f.getDepartureCity() + " to " + f.getDestinationCity());
+//		}
 		//initiate stuff....
 
 	}
