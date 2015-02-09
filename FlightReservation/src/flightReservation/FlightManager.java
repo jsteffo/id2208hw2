@@ -37,9 +37,9 @@ public class FlightManager {
 
 	private void initiateFlights(){
 		//The following four routes makes the route stockholm to göteborg have 2 possible alternatives.
-		flightList.add(new Flight("Stockholm", "Abisko", LocalDate.of(2015, 1, 1),5, 7));
+		flightList.add(new Flight("Stockholm", "Abisko", LocalDate.of(2015, 1, 1),5, 2));
 
-		flightList.add(new Flight("Abisko", "Kiruna", LocalDate.of(2015, 1, 1) , 5, 6));
+		flightList.add(new Flight("Abisko", "Kiruna", LocalDate.of(2015, 1, 1) , 5, 0));
 		flightList.add(new Flight("Stockholm", "Malmö", LocalDate.of(2015, 1, 1) , 5, 1));
 
 		flightList.add(new Flight("Halmstad", "Göteborg", LocalDate.of(2015, 1, 1) , 2, 2));
@@ -92,12 +92,17 @@ public class FlightManager {
             
             return priceList;
         }
-        String bookTicket(String creditCardnbr, String departureCity, String destinationCity) {
+        public String bookTicket(String creditCardnbr, String departureCity, String destinationCity) {
         List<Flight> flightsToBook = new ArrayList<Flight>();
         getPossibleRoutingLocal(departureCity, destinationCity, flightsToBook);   // hittar rutten som man ska boka
         boolean isTicketsLeft=true;
         String returnMessage="";
         Flight tempFlight;
+        if(flightsToBook.isEmpty()){
+            returnMessage = "There is no route between "+departureCity+" and "+destinationCity;
+            return returnMessage;
+        }
+        
         // loopa igenom alla som ska bokas och kolla om ngn av de har slut på biljetter
         for (int i = 0; i < flightsToBook.size(); i++) {
             int tempTickets = flightsToBook.get(i).getNumberOfTickets();
@@ -105,7 +110,7 @@ public class FlightManager {
             if(tempTickets < 1){
                 isTicketsLeft = false;
                 tempFlight = flightsToBook.get(i);
-                returnMessage = "Vi kunde tyvärr inte boka dina biljetter eftersom att flighten mellan "+tempFlight.getDepartureCity()+" och "+tempFlight.getDestinationCity()+ "har slut på biljetter";
+                returnMessage = "Vi kunde tyvärr inte boka dina biljetter eftersom att flighten mellan "+tempFlight.getDepartureCity()+" och "+tempFlight.getDestinationCity()+ " har slut på biljetter";
             }
         }
             if (isTicketsLeft) {
@@ -114,7 +119,7 @@ public class FlightManager {
                     int tempTickets = flightsToBook.get(j).getNumberOfTickets();
                     flightsToBook.get(j).setNumberOfTickets(tempTickets - 1);
                 }
-                returnMessage = "biljett mellan "+departureCity+" och "+destinationCity+"är bokad";
+                returnMessage = "biljett mellan "+departureCity+" och "+destinationCity+" är bokad";
             }
         
         return returnMessage;

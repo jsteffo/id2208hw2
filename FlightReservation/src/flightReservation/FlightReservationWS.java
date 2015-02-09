@@ -44,11 +44,11 @@ public class FlightReservationWS {
         // instansierar flightsen, sätter alla med 10 ticktes till o börja med
         // enda sättet jag kommer på för tillfället för att kunna boka flights på olika datum är att ha en nestlad lista typ list<Datum<Flight>> där varje element i den första listan
         //motsvarar ett datum, och varje datum innehåller en lista med flights som går den dagen. känns jävla krångligt men kommer inte på så mkt mer just nu
-        this.flight5 = new Flight("Stockholm", "Bankok", 600, tid5, 8000,10);
-        this.flight4 = new Flight("London", "Berlin", 80, tid4, 400,10);
-        this.flight3 = new Flight("Stockholm", "London", 65, tid3, 700,10);
-        this.flight1 = new Flight("Stockholm", "Malmö", 45, tid2, 500,10);
-        this.flight2 = new Flight("Malmö", "London", 45, tid1, 500,10);
+//        this.flight5 = new Flight("Stockholm", "Bankok", 600, tid5, 8000,10);
+//        this.flight4 = new Flight("London", "Berlin", 80, tid4, 400,10);
+//        this.flight3 = new Flight("Stockholm", "London", 65, tid3, 700,10);
+//        this.flight1 = new Flight("Stockholm", "Malmö", 45, tid2, 500,10);
+//        this.flight2 = new Flight("Malmö", "London", 45, tid1, 500,10);
 
     }
 
